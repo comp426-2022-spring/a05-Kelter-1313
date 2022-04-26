@@ -25,23 +25,33 @@
 	<meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
   </head>
-  <body>
+  <body id="document">
     <nav>
       <button id="homenav">Home</button>
       <button id="singlenav">Flip one coin</button>
       <button id="multinav">Flip multiple coins</button>
       <button id="guessnav">Guess the result</button>
     </nav>
-    <div id="home">
-      
+    <div id="home" class="active">
+      <h1>welcome to the game!</h1>
+      <p>Click on "Flip one coin" to go to a page where you can flip a singular coin</p>
+      <p>Click on "Flip multiple coins" to go to a page where you can flip many coins!</p>
+      <p>Click on "Guess the result" to go to a page where you can guess how a coin will land when flipped!</p>
+      <p>Have fun!</p>
     </div>    
     <div id="single" class="hidden">
+      <h1>Single Flip!</h1>
+      <p>Click the bottom left corner button to flip a coin!</p>
+      <button id="singleFlipCoinButton">Click Me!</button>
+      <img id="singleCoinImages" src="./assets/img/coin.png" width="250" height="250">
       
     </div>
     <div id="multi" class="hidden">
+      <h1>Multi Flip!</h1>
       
     </div>
     <div id="guess" class="hidden">
+      <h1>Guess The Result!</h1>
       
     </div>
 	<script src="main.js"></script>

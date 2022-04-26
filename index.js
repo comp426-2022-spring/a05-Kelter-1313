@@ -5,13 +5,11 @@
 const http = require('http')
 const morgan = require("morgan")
 // Make Express use its own built-in body parser to handle JSON
-app.use(express.json());
 // Require fs module
 const fs = require('fs')
 
 const express = require('express')
 const app = express()
-
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
@@ -21,6 +19,7 @@ app.use(express.static('./public'));
 // Require minimist module (make sure you install this one via npm).
 const args = require("minimist")(process.argv.slice(2))
 // Use minimist to process one argument `--port=` on the command line after `node server.js`.
+
 
 if (args["help"] == null){
 const db = require('./src/services/database')
@@ -157,22 +156,38 @@ function countFlips(array) {
   }
   return counts;
 }
- 
- 
-app.get("/app/flip/", (req,res) => {
-  res.status(200).json({"flip":coinFlip()})
+
+app.post('/app/flip/coins/', (req, res, next) => {
+  const flips = coinFlips(req.body.number)
+  const count = countFlips(flips)
+  res.status(200).json({"raw":flips,"summary":count})
 })
  
  
- 
-app.get("/app/echo/:number", (req, res) => {
-  res.status(200).json({"message": req.params.number})
+app.post("/app/flip/", (req,res, next) => {
+  flip = coinFlip()
+  res.status(200).json({"flip":flip})
+  next()
 })
  
-app.get("/app/flips/:number/", (req,res) =>{
-  var a = coinFlips(req.params.number)
-  res.status(200).json({"raw":a, "summary":countFlips(a)})
+app.post('/app/flips/:number', (req, res, next) => {
+  const flips = coinFlips(req.body.number)
+  const count = countFlips(flips)
+  res.status(200).json({"raw":flips,"summary":count})
+});
+
+app.post('/app/flip/call/:guess(heads|tails)/', (req, res, next) => {
+  const game = flipACoin(req.body.guess)
+  res.status(200).json(game)
 })
+
+// Flip a bunch of coins with one body variable (number)
+app.post('/app/flip/coins/', (req, res, next) => {
+  const flips = coinFlips(req.body.number)
+  const count = countFlips(flips)
+  res.status(200).json({"raw":flips,"summary":count})
+})
+ 
  
 app.get("/app/flip/call/heads/", (req,res) =>{
   res.status(200).json(flipACoin("heads"))
@@ -180,6 +195,11 @@ app.get("/app/flip/call/heads/", (req,res) =>{
  
 app.get("/app/flip/call/tails/", (req,res) =>{
   res.status(200).json(flipACoin("tails"))
+})
+
+app.post('/app/flip/call/', (req, res, next) => {
+  const game = flipACoin(req.body.guess)
+  res.status(200).json(game)
 })
 
 
