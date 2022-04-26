@@ -81,10 +81,9 @@ app.use((req, res, next) => {
   next()
   })
 
-app.get("/app", (req, res, next) => {
+app.post("/app", (req, res, next) => {
   res.json({"message":"Your API works! (200)"})
   res.status(200)
-  next()
 })
 
 if(args["debug"] == "true" || args["debug"] == null){
@@ -110,7 +109,6 @@ if(args["debug"] == "true" || args["debug"] == null){
 app.use(function(req, res, next){
   res.json({"message":"Endpoint not found. (404)"})
   res.status(404)
-  next()
 })
 
 // Necessary Functions
@@ -164,10 +162,10 @@ app.post('/app/flip/coins/', (req, res, next) => {
 })
  
  
-app.post("/app/flip/", (req,res, next) => {
+app.post("/app/flip", (req,res, next) => {
   flip = coinFlip()
+  console.log(flip)
   res.status(200).json({"flip":flip})
-  next()
 })
  
 app.post('/app/flips/:number', (req, res, next) => {

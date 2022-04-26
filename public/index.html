@@ -34,7 +34,7 @@
     </nav>
     <div id="home" class="active">
       <h1>welcome to the game!</h1>
-      <p>Click on "Flip one coin" to go to a page where you can flip a singular coin</p>
+      <p>Click on "Flip one coin" to go to a page where you can flip a singular coin!</p>
       <p>Click on "Flip multiple coins" to go to a page where you can flip many coins!</p>
       <p>Click on "Guess the result" to go to a page where you can guess how a coin will land when flipped!</p>
       <p>Have fun!</p>
@@ -48,11 +48,23 @@
     </div>
     <div id="multi" class="hidden">
       <h1>Multi Flip!</h1>
+      <p>Put in the number of coins you want to flip, then press the submit button to flip those coins!</p>
+
+      <label for="multiFlipInput"># of Coins : </label>
+      <input type="text" id="multiFlipInput" name=""><br><br>
+      <button id="multiFlipCoinButton">Submit</button>
+      <table id="multiFlipCoinTable">
+        <p>Here is where the coins will show!</p>
+      </table>
       
     </div>
     <div id="guess" class="hidden">
       <h1>Guess The Result!</h1>
-      
+      <p>Put your guess below, then press the submit button in the bottom left corner to flip a coin and see if you called it correctly!</p>
+      <label for="multiFlipInput">Guess (heads or tails) : </label>
+      <input type="text" id="guessFlipInput">
+      <button id="guessFlipCoinButton">Submit</button>
+      <img id="singleCoinImages" src="./assets/img/coin.png" width="250" height="250">
     </div>
 	<script src="main.js"></script>
   </body>

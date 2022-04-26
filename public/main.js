@@ -59,18 +59,15 @@ const singleFlipButton = document.getElementById("singleFlipCoinButton")
 			singleFlipButton.addEventListener("click", flipSingle)
 			// Create the submit handler
 			function flipSingle(){
-                url = "http:localhost:5000/app/flip/"
+                url = "http://localhost:5000/app/flip"
                     fetch(url)
                       .then(function(response) {
                       return response.json();
                       })
                     .then(function(result) {
-          //              if( result.flip == "heads"){
-                        document.getElementById("singleCoinImages").setAttribute("src", result.flip+".jpg");
-            //            }else{
-              //              document.getElementById("singleCoinImages").src = "./assets/img/tails.png"
+                        console.log(result)
+                        document.getElementById("singleCoinImages").setAttribute("src", "./assets/img/"+result.flip+".png");
                         }
-                //    }
                     )
             }
             
@@ -80,5 +77,24 @@ const singleFlipButton = document.getElementById("singleFlipCoinButton")
 
 // Flip multiple coins and show coin images in table as well as summary results
 // Enter number and press button to activate coin flip series
+
+const multiFlipButton = document.getElementById("multiFlipCoinButton")
+			// Add event listener for coins form
+			multiFlipButton.addEventListener("click", flipMulti)
+			// Create the submit handler
+			function flipMulti(){
+                url = "http://localhost:5000/app/flip"
+                a = document.getElementById("guessFlipInput").value // doesn't seem to pick up when something is inputted
+                console.log(parseInt(a))
+                    fetch(url)
+                      .then(function(response) {
+                      return response.json();
+                      })
+                    .then(function(result) {
+                        console.log(result)
+                        document.getElementById("singleCoinImages").setAttribute("src", "./assets/img/"+result.flip+".png");
+                        }
+                    )
+            }
 
 // Guess a flip by clicking either heads or tails button
