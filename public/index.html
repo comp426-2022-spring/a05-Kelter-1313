@@ -50,9 +50,11 @@
       <h1>Multi Flip!</h1>
       <p>Put in the number of coins you want to flip, then press the submit button to flip those coins!</p>
 
-      <label for="multiFlipInput"># of Coins : </label>
-      <input type="text" id="multiFlipInput" name=""><br><br>
-      <button id="multiFlipCoinButton">Submit</button>
+      <form id = "multiFlipForm">
+        <input type="number" id="number" name="number" value=>
+        <input type="button" value="Submit" id="submitMulti">
+      </form>
+      <p><p>This is your number : </p><p id="numberInputtedCheck">0?</p></p>
       <table id="multiFlipCoinTable">
         <p>Here is where the coins will show!</p>
       </table>

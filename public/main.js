@@ -79,24 +79,27 @@ const singleFlipButton = document.getElementById("singleFlipCoinButton")
 // Flip multiple coins and show coin images in table as well as summary results
 // Enter number and press button to activate coin flip series
 
-const multiFlipButton = document.getElementById("multiFlipCoinButton")
+const multiFlipButton = document.getElementById("submitMulti")
 			// Add event listener for coins form
 			multiFlipButton.addEventListener("click", flipMulti)
 			// Create the submit handler
 			function flipMulti(){
-                url = "http://localhost:5000/app/flip"
-                a = document.getElementById("guessFlipInput").value // doesn't seem to pick up when something is inputted
-                console.log(parseInt(a))
+                a = document.getElementById("number").value // doesn't seem to pick up when something is inputted
+                document.getElementById("numberInputtedCheck").innerHTML = a;
+                const endpoint = "app/flip/coins/";
+                const url = document.baseURI+endpoint;
                     fetch(url)
                       .then(function(response) {
-                      return response.json();
+                      console.log(response.json())
                       })
-                    .then(function(result) {
-                        console.log(result)
-                        document.getElementById("singleCoinImages").setAttribute("src", "./assets/img/"+result.flip+".png");
-                        }
-                    )
+             //       .then(function(result) {
+               //         console.log(result)
+                 //       document.getElementById("singleCoinImages").setAttribute("src", "./assets/img/"+result.flip+".png");
+                   //     }
+                    //)
             }
+
+
 
 // Guess a flip by clicking either heads or tails button
 
