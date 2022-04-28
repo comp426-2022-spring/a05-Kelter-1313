@@ -50,8 +50,6 @@ const guessFlip = document.getElementById("guessnav")
                 document.getElementById("multi").className = "hidden";
                 document.getElementById("guess").className = "active";
             }
-//
-// cat
 
 // Flip one coin and show coin image to match result when button clicked
 
