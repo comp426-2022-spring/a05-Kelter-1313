@@ -50,7 +50,8 @@ const guessFlip = document.getElementById("guessnav")
                 document.getElementById("multi").className = "hidden";
                 document.getElementById("guess").className = "active";
             }
-
+//
+// cat
 
 // Flip one coin and show coin image to match result when button clicked
 
@@ -58,8 +59,10 @@ const singleFlipButton = document.getElementById("singleFlipCoinButton")
 			// Add event listener for coins form
 			singleFlipButton.addEventListener("click", flipSingle)
 			// Create the submit handler
+
 			function flipSingle(){
-                url = "http://localhost:5000/app/flip"
+                    const endpoint = "app/flip/";
+                    const url = document.baseURI+endpoint;
                     fetch(url)
                       .then(function(response) {
                       return response.json();
@@ -98,3 +101,51 @@ const multiFlipButton = document.getElementById("multiFlipCoinButton")
             }
 
 // Guess a flip by clicking either heads or tails button
+
+const guessHeadFlipButton = document.getElementById("guessHeadFlipCoinButton")
+			// Add event listener for coins form
+			guessHeadFlipButton.addEventListener("click", flipGuessHead)
+			// Create the submit handler
+
+			function flipGuessHead(){
+                    const endpoint = "app/flip/call/heads/";
+                    const url = document.baseURI+endpoint;
+                    fetch(url)
+                      .then(function(response) {
+                      return response.json();
+                      })
+                    .then(function(result) {
+                        console.log(result)
+                        document.getElementById("guessCoinImages").setAttribute("src", "./assets/img/"+result.flip+".png");
+                        if(result.flip == "tails"){
+                            document.getElementById("winOrLose").innerHTML = "You guessed wrong... Oof...";
+                        }else{
+                            document.getElementById("winOrLose").innerHTML = "You guessed right! Congrats!";
+                        }
+                        }
+                    )
+            }
+
+            const guessTailsFlipButton = document.getElementById("guessTailFlipCoinButton")
+			// Add event listener for coins form
+			guessTailsFlipButton.addEventListener("click", flipGuessTail)
+			// Create the submit handler
+
+			function flipGuessTail(){
+                    const endpoint = "app/flip/call/tails/";
+                    const url = document.baseURI+endpoint;
+                    fetch(url)
+                      .then(function(response) {
+                      return response.json();
+                      })
+                    .then(function(result) {
+                        console.log(result)
+                        document.getElementById("guessCoinImages").setAttribute("src", "./assets/img/"+result.flip+".png");
+                        if(result.flip == "tails"){
+                            document.getElementById("winOrLose").innerHTML = "You guessed right! Congrats!";
+                        }else{
+                            document.getElementById("winOrLose").innerHTML = "You guessed wrong... Oof...";
+                        }
+                        }
+                    )
+            }

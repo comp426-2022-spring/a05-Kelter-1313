@@ -60,11 +60,10 @@
     </div>
     <div id="guess" class="hidden">
       <h1>Guess The Result!</h1>
-      <p>Put your guess below, then press the submit button in the bottom left corner to flip a coin and see if you called it correctly!</p>
-      <label for="multiFlipInput">Guess (heads or tails) : </label>
-      <input type="text" id="guessFlipInput">
-      <button id="guessFlipCoinButton">Submit</button>
-      <img id="singleCoinImages" src="./assets/img/coin.png" width="250" height="250">
+      <p>Press the button of your guess below for how a single coin will land when flipped!</p>
+      <p><button id="guessHeadFlipCoinButton">Heads</button><button id="guessTailFlipCoinButton">Tails</button></p>
+      <img id="guessCoinImages" src="./assets/img/coin.png" width="250" height="250">
+      <p id="winOrLose">Whether you win or lose will show up here!</p>
     </div>
 	<script src="main.js"></script>
   </body>

@@ -81,7 +81,7 @@ app.use((req, res, next) => {
   next()
   })
 
-app.post("/app", (req, res, next) => {
+app.get("/app", (req, res, next) => {
   res.json({"message":"Your API works! (200)"})
   res.status(200)
 })
@@ -105,11 +105,7 @@ if(args["debug"] == "true" || args["debug"] == null){
 
 
 }
-//
-app.use(function(req, res, next){
-  res.json({"message":"Endpoint not found. (404)"})
-  res.status(404)
-})
+
 
 // Necessary Functions
 function coinFlip() {
@@ -155,26 +151,29 @@ function countFlips(array) {
   return counts;
 }
 
-app.post('/app/flip/coins/', (req, res, next) => {
+app.get('/app/flip/coins/', (req, res, next) => {
   const flips = coinFlips(req.body.number)
   const count = countFlips(flips)
+  res.type('text/json')
   res.status(200).json({"raw":flips,"summary":count})
 })
  
  
-app.post("/app/flip", (req,res, next) => {
+app.get("/app/flip/", (req,res, next) => {
   flip = coinFlip()
   console.log(flip)
+  res.type('text/json')
   res.status(200).json({"flip":flip})
 })
  
-app.post('/app/flips/:number', (req, res, next) => {
+app.get('/app/flips/:number', (req, res, next) => {
   const flips = coinFlips(req.body.number)
   const count = countFlips(flips)
+  res.type('text/json')
   res.status(200).json({"raw":flips,"summary":count})
 });
 
-app.post('/app/flip/call/:guess(heads|tails)/', (req, res, next) => {
+app.get('/app/flip/call/:guess(heads|tails)/', (req, res, next) => {
   const game = flipACoin(req.body.guess)
   res.status(200).json(game)
 })
@@ -185,7 +184,6 @@ app.post('/app/flip/coins/', (req, res, next) => {
   const count = countFlips(flips)
   res.status(200).json({"raw":flips,"summary":count})
 })
- 
  
 app.get("/app/flip/call/heads/", (req,res) =>{
   res.status(200).json(flipACoin("heads"))
@@ -198,6 +196,11 @@ app.get("/app/flip/call/tails/", (req,res) =>{
 app.post('/app/flip/call/', (req, res, next) => {
   const game = flipACoin(req.body.guess)
   res.status(200).json(game)
+})
+
+app.use(function(req, res, next){
+  res.json({"message":"Endpoint not found. (404)"})
+  res.status(404)
 })
 
 
