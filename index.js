@@ -30,7 +30,7 @@ if(args["log"] == null || args["log"] == "true"){
 // ^^ --log behavior 
 
 
-var port = args["por"]
+var port = args["port"]
 // Make this const default to port 3000 if there is no argument given for `--port`.
 if (port == null){
   port = 5000
@@ -184,7 +184,7 @@ app.post('/app/flip/coins/', (req, res, next) => {
   const count = countFlips(flips)
   res.status(200).json({"raw":flips,"summary":count})
 })
- 
+
 app.get("/app/flip/call/heads/", (req,res) =>{
   res.status(200).json(flipACoin("heads"))
 })
